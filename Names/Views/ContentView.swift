@@ -19,11 +19,7 @@ struct ContentView: View {
         
         // Show our list of users
         List(store.people.sorted()) { person in
-            VStack(alignment: .leading) {
-                Text("\(person.name)")
-                Text("\(person.id)")
-                    .font(.caption)
-            }
+            ListItemView(person: person)
         }
         .animation(.default)
         .navigationTitle("Names")

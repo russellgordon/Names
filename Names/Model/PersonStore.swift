@@ -7,8 +7,6 @@
 
 import Foundation
 
-let fileLabel = "SavedPeople"
-
 class PersonStore: ObservableObject {
             
     @Published var people: [Person] = []
@@ -32,7 +30,6 @@ class PersonStore: ObservableObject {
             // Decode the data into Swift native data structures
             self.people = try JSONDecoder().decode([Person].self, from: data)
             
-            
         } catch {
             
             #if DEBUG
@@ -43,12 +40,6 @@ class PersonStore: ObservableObject {
             self.people = []
         }
         
-    }
-
-    // Return the directory that we can save user data in
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
     
     // Save the list of people and their photograph names

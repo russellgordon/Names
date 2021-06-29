@@ -16,7 +16,7 @@ struct AddPersonView: View {
     @State private var image: Image?
     
     // The image the user selected
-    @State private var inputImage: UIImage?
+    @State private var selectedImage: UIImage?
     
     // The name for the person
     @State private var name: String = ""
@@ -69,7 +69,7 @@ struct AddPersonView: View {
             }
             .padding()
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: $inputImage)
+                ImagePicker(image: $selectedImage)
             }
             .toolbar {
                 
@@ -179,7 +179,7 @@ struct AddPersonView: View {
     func loadImage() {
         
         // Verify that an image was selected, otherwise quit
-        guard let inputImage = inputImage else { return }
+        guard let inputImage = selectedImage else { return }
         
         // Show the image
         image = Image(uiImage: inputImage)
@@ -191,7 +191,8 @@ struct AddPersonView: View {
         
         // Add a person to the list
         store.people.append(Person(id: UUID(),
-                                   name: name))
+                                   name: name,
+                                   image: selectedImage!))
         
         // Save that person to permanent storage
         store.saveData()
