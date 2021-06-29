@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8153464F268B87C100315437 /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153464E268B87C100315437 /* AddPersonView.swift */; };
+		81C92753268B8E1400EF80BA /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92752268B8E1400EF80BA /* AddPersonView.swift */; };
+		81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92758268B8E6200EF80BA /* ImagePicker.swift */; };
 		81E91073268B55B900266067 /* NamesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E91072268B55B900266067 /* NamesApp.swift */; };
 		81E91075268B55B900266067 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E91074268B55B900266067 /* ContentView.swift */; };
 		81E91077268B55BA00266067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81E91076268B55BA00266067 /* Assets.xcassets */; };
@@ -17,7 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8153464E268B87C100315437 /* AddPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
+		81C92752268B8E1400EF80BA /* AddPersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
+		81C92758268B8E6200EF80BA /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		81E9106F268B55B900266067 /* Names.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Names.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81E91072268B55B900266067 /* NamesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesApp.swift; sourceTree = "<group>"; };
 		81E91074268B55B900266067 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				81E91074268B55B900266067 /* ContentView.swift */,
-				8153464E268B87C100315437 /* AddPersonView.swift */,
+				81C92752268B8E1400EF80BA /* AddPersonView.swift */,
+				81C92758268B8E6200EF80BA /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,9 +168,10 @@
 			files = (
 				81E91086268B58C300266067 /* PersonStore.swift in Sources */,
 				81E91084268B578A00266067 /* Person.swift in Sources */,
-				8153464F268B87C100315437 /* AddPersonView.swift in Sources */,
 				81E91075268B55B900266067 /* ContentView.swift in Sources */,
+				81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */,
 				81E91073268B55B900266067 /* NamesApp.swift in Sources */,
+				81C92753268B8E1400EF80BA /* AddPersonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

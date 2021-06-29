@@ -15,6 +15,9 @@ struct AddPersonView: View {
     // The image to show
     @State private var image: Image?
     
+    // The image the user selected
+    @State private var inputImage: UIImage?
+    
     // The name for the person
     @State private var name: String = ""
     
@@ -65,6 +68,9 @@ struct AddPersonView: View {
                 
             }
             .padding()
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                ImagePicker(image: $inputImage)
+            }
             .toolbar {
                 
                 ToolbarItem(placement: .primaryAction) {
@@ -78,6 +84,9 @@ struct AddPersonView: View {
                         presentationMode.wrappedValue.dismiss()
                         
                     }
+                    // Don't allow person to save unless a name and photo are provided
+                    .disabled(name.isEmpty || image == nil)
+
                     
                 }
             }
@@ -166,6 +175,17 @@ struct AddPersonView: View {
         
     }
     
+    // Load the image selected from the picker
+    func loadImage() {
+        
+        // Verify that an image was selected, otherwise quit
+        guard let inputImage = inputImage else { return }
+        
+        // Show the image
+        image = Image(uiImage: inputImage)
+        
+    }
+    
     // Add the new person
     func addPerson() {
         
@@ -177,9 +197,6 @@ struct AddPersonView: View {
         store.saveData()
         
     }
-    
-
-    
     
 }
 
