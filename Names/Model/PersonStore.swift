@@ -59,8 +59,14 @@ class PersonStore: ObservableObject {
         
         do {
             
+            // Create an encoder
+            let encoder = JSONEncoder()
+            #if DEBUG
+            encoder.outputFormatting = .prettyPrinted
+            #endif
+            
             // Encode the list of people we've tracked
-            let data = try JSONEncoder().encode(self.people)
+            let data = try encoder.encode(self.people)
             
             // Actually write the JSON file to the documents directory
             try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])

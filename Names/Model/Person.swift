@@ -10,12 +10,11 @@ import Foundation
 struct Person: Identifiable, Comparable, Codable {
 
     enum CodingKeys: CodingKey {
-        case name, photo
+        case id, name
     }
 
-    let id = UUID()
+    let id: UUID
     let name: String
-    let photo: UUID
     
     static func < (lhs: Person, rhs: Person) -> Bool {
         lhs.name < rhs.name
