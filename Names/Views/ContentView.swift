@@ -19,7 +19,9 @@ struct ContentView: View {
         
         // Show our list of users
         List(store.people.sorted()) { person in
-            ListItemView(person: person)
+            NavigationLink(destination: PersonDetailView(person: person)) {
+                ListItemView(person: person)
+            }
         }
         .animation(.default)
         .navigationTitle("Names")
