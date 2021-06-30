@@ -11,7 +11,7 @@ import SwiftUI
 struct NamesApp: App {
     
     // Initialize our data store
-    var store = PersonStore()
+    @StateObject var store = PersonStore()
     
     var body: some Scene {
         
