@@ -9,6 +9,15 @@ import CoreLocation
 import Foundation
 import SwiftUI
 
+/*
+ Placemark support adapted from these tutorials:
+ 
+ https://dev.to/andrewlundydev/core-location-how-to-display-a-human-readable-address-using-clgeocoder-lng
+ 
+ https://adrianhall.github.io/swift/2019/11/05/swiftui-location/
+ 
+ */
+
 enum LocationServicesStatus: String {
     case firstRun           // User has never run the app before, so show an explanation of why LocationServices is required
     case denied             // User refused permission for LocationServices, so explain that app requires it to be run, must change in Settings
@@ -18,17 +27,91 @@ enum LocationServicesStatus: String {
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var locationServicesStatus: LocationServicesStatus = .firstRun
-
-    let manager = CLLocationManager()
-    var lastKnownLocation: CLLocationCoordinate2D?
     
+    // For use in getting a human-readable address
+    private let geocoder = CLGeocoder()
+
+    // A human-readable address tied to the last known location
+    private var placemark: CLPlacemark?
+    
+    var placemarkDescription: String {
+        
+        let notFound = "Address could not be found."
+
+        guard let placemark = placemark else { return notFound }
+
+        guard let streetNumber = placemark.subThoroughfare else {
+            #if DEBUG
+            print("street number not found")
+            #endif
+            return notFound
+        }
+        guard let streetName = placemark.thoroughfare else {
+            #if DEBUG
+            print("street name not found")
+            #endif
+            return notFound
+        }
+        guard let city = placemark.locality else {
+            #if DEBUG
+            print("city not found")
+            #endif
+            return notFound
+        }
+        guard let administrativeArea = placemark.administrativeArea else {
+            #if DEBUG
+            print("administrative area not found")
+            #endif
+            return notFound
+        }
+        guard let postalCode = placemark.postalCode else {
+            #if DEBUG
+            print("postal code not found")
+            #endif
+            return notFound
+        }
+        guard let country = placemark.country else {
+            #if DEBUG
+            print("country not found")
+            #endif
+            return notFound
+        }
+
+        // Rationalize output when there is a significant placemark name "Apple Campus" vs. when there is not
+        var name = placemark.name ?? ""
+        if name == "\(streetNumber) \(streetName)" {
+            name = ""
+        } else {
+            name += "\n"
+        }
+        
+        return "\(name)\(streetNumber) \(streetName)\n\(city), \(administrativeArea)\n\(postalCode)\n\(country)"
+        
+    }
+    
+    
+    // The human-readable address
+    
+    let manager = CLLocationManager()
+    
+    private var location: CLLocation?
+
+    var lastKnownLocation: CLLocationCoordinate2D? {
+        return location?.coordinate
+    }
+        
     override init() {
         super.init()
         manager.delegate = self
     }
         
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        lastKnownLocation = locations.first?.coordinate
+        
+        // Save last known location for use with geocoding
+        location = locations.first
+        
+        // Get a human-readable address for this location
+        reverseGeocode()
     }
     
     // "If you do not implement this method, Core Location throws an exception when attempting to use location services.
@@ -97,6 +180,26 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         }
         
         return manager.authorizationStatus
+    }
+    
+    // Get a human-readable address
+    private func reverseGeocode() {
+        
+        // Ensure that we have a location to work with
+        guard let location = location else { return }
+        
+        // This runs asynchronously
+        geocoder.reverseGeocodeLocation(location) { (places, error) in
+            
+            // If a human-readable address was found, update the property
+            if error == nil {
+                self.placemark = places?.first
+            } else {
+                self.placemark = nil
+            }
+            
+        }
+        
     }
     
 }

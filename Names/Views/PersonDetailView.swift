@@ -35,6 +35,8 @@ struct PersonDetailView: View {
                             annotations: [person])
                         .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.25)
                     
+                    Text(person.placemark)
+                    
                     Text("On:")
                         .font(.title3)
                         .bold()

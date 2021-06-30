@@ -215,13 +215,17 @@ struct AddPersonView: View {
             formatter.dateStyle = .full
             let now = formatter.string(from: Date())
             
+            // Get a human-readable description of the current location
+            let placemark = locationManager.placemarkDescription
+            
             // Add a person to the list
             store.people.append(Person(id: UUID(),
                                        name: name,
                                        image: selectedImage!,
                                        latitude: location.latitude,
                                        longitude: location.longitude,
-                                       dateMet: now))
+                                       dateMet: now,
+                                       placemark: placemark))
             
             // Save that person to permanent storage
             store.saveData()
