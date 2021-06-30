@@ -22,8 +22,6 @@ struct ListItemView: View {
             VStack(alignment: .leading) {
                 
                 Text("\(person.name)")
-                Text("\(person.id)")
-                    .font(.caption)
             }
         }
     }

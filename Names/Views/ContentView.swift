@@ -8,44 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    // Access our data store
-    @EnvironmentObject var store: PersonStore
-    
-    // Whether to show the add person dialog
-    @State private var showingAddPerson = false
+
+    // Access to location manager
+    @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
-        
-        // Show our list of users
-        List(store.people.sorted()) { person in
-            NavigationLink(destination: PersonDetailView(person: person)) {
-                ListItemView(person: person)
-            }
-        }
-        .animation(.default)
-        .navigationTitle("Names")
-        .sheet(isPresented: $showingAddPerson) {
-            AddPersonView()
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                
-                Button("Add") {
-                    showingAddPerson = true
-                }
-                
-            }
+
+        VStack {
             
-            ToolbarItem(placement: .navigationBarLeading) {
-                
-                Button("Reset") {
-                    store.people.removeAll()
-                    store.saveData()
-                }
-                
+            switch locationManager.locationServicesStatus {
+            case .firstRun:
+                // Initial explanation of why location services is needed
+                RequestLocationServicesAccessView()
+            case .denied:
+                // User chose to disable location services; explain why and how it's used in more detail
+                EnableLocationServicesAccessInSettingsView()
+            case .granted:
+                // Show the app's list of names
+                ListView()
             }
         }
+        .navigationTitle("Names")
     }
     
 }

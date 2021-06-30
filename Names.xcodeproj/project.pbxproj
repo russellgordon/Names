@@ -11,7 +11,11 @@
 		81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92758268B8E6200EF80BA /* ImagePicker.swift */; };
 		81C9275B268B92D500EF80BA /* SharedFunctionsAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9275A268B92D500EF80BA /* SharedFunctionsAndConstants.swift */; };
 		81C9275D268B997B00EF80BA /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9275C268B997B00EF80BA /* ListItemView.swift */; };
-		81C9275F268B9C4400EF80BA /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9275E268B9C4400EF80BA /* PersonDetailView.swift */; };
+		81C92761268B9EF300EF80BA /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92760268B9EF300EF80BA /* PersonDetailView.swift */; };
+		81C92764268C837D00EF80BA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92763268C837D00EF80BA /* LocationManager.swift */; };
+		81C92766268C870C00EF80BA /* RequestLocationServicesAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92765268C870C00EF80BA /* RequestLocationServicesAccessView.swift */; };
+		81C92768268C889F00EF80BA /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92767268C889F00EF80BA /* ListView.swift */; };
+		81C9276A268C896200EF80BA /* EnableLocationServicesAccessInSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92769268C896200EF80BA /* EnableLocationServicesAccessInSettingsView.swift */; };
 		81E91073268B55B900266067 /* NamesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E91072268B55B900266067 /* NamesApp.swift */; };
 		81E91075268B55B900266067 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E91074268B55B900266067 /* ContentView.swift */; };
 		81E91077268B55BA00266067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81E91076268B55BA00266067 /* Assets.xcassets */; };
@@ -25,7 +29,11 @@
 		81C92758268B8E6200EF80BA /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		81C9275A268B92D500EF80BA /* SharedFunctionsAndConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctionsAndConstants.swift; sourceTree = "<group>"; };
 		81C9275C268B997B00EF80BA /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
-		81C9275E268B9C4400EF80BA /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
+		81C92760268B9EF300EF80BA /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
+		81C92763268C837D00EF80BA /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		81C92765268C870C00EF80BA /* RequestLocationServicesAccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestLocationServicesAccessView.swift; sourceTree = "<group>"; };
+		81C92767268C889F00EF80BA /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		81C92769268C896200EF80BA /* EnableLocationServicesAccessInSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableLocationServicesAccessInSettingsView.swift; sourceTree = "<group>"; };
 		81E9106F268B55B900266067 /* Names.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Names.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81E91072268B55B900266067 /* NamesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesApp.swift; sourceTree = "<group>"; };
 		81E91074268B55B900266067 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81C92762268C836500EF80BA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				81C92763268C837D00EF80BA /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		81E91066268B55B900266067 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +84,7 @@
 			children = (
 				81E91072268B55B900266067 /* NamesApp.swift */,
 				81E91082268B576F00266067 /* Views */,
+				81C92762268C836500EF80BA /* Managers */,
 				81E91081268B576A00266067 /* Model */,
 				81E91076268B55BA00266067 /* Assets.xcassets */,
 				81E9107B268B55BA00266067 /* Info.plist */,
@@ -97,11 +114,14 @@
 		81E91082268B576F00266067 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				81E91074268B55B900266067 /* ContentView.swift */,
 				81C92752268B8E1400EF80BA /* AddPersonView.swift */,
+				81E91074268B55B900266067 /* ContentView.swift */,
+				81C92769268C896200EF80BA /* EnableLocationServicesAccessInSettingsView.swift */,
 				81C92758268B8E6200EF80BA /* ImagePicker.swift */,
+				81C92767268C889F00EF80BA /* ListView.swift */,
 				81C9275C268B997B00EF80BA /* ListItemView.swift */,
-				81C9275E268B9C4400EF80BA /* PersonDetailView.swift */,
+				81C92760268B9EF300EF80BA /* PersonDetailView.swift */,
+				81C92765268C870C00EF80BA /* RequestLocationServicesAccessView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,13 +197,17 @@
 			files = (
 				81E91086268B58C300266067 /* PersonStore.swift in Sources */,
 				81E91084268B578A00266067 /* Person.swift in Sources */,
+				81C9276A268C896200EF80BA /* EnableLocationServicesAccessInSettingsView.swift in Sources */,
+				81C92764268C837D00EF80BA /* LocationManager.swift in Sources */,
 				81E91075268B55B900266067 /* ContentView.swift in Sources */,
 				81C9275D268B997B00EF80BA /* ListItemView.swift in Sources */,
-				81C9275F268B9C4400EF80BA /* PersonDetailView.swift in Sources */,
+				81C92761268B9EF300EF80BA /* PersonDetailView.swift in Sources */,
 				81C9275B268B92D500EF80BA /* SharedFunctionsAndConstants.swift in Sources */,
 				81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */,
+				81C92768268C889F00EF80BA /* ListView.swift in Sources */,
 				81E91073268B55B900266067 /* NamesApp.swift in Sources */,
 				81C92753268B8E1400EF80BA /* AddPersonView.swift in Sources */,
+				81C92766268C870C00EF80BA /* RequestLocationServicesAccessView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
