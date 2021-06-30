@@ -36,8 +36,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     var placemarkDescription: String {
         
-        let notFound = "Address could not be found."
-
+        var notFound = "Address could not be found."
+        if let lastKnownLocation = lastKnownLocation {
+            notFound += """
+                        
+                        
+                        Co-ordinates are:
+                        
+                        \(lastKnownLocation.latitude), \(lastKnownLocation.longitude)
+                        """
+        }
+        
         guard let placemark = placemark else { return notFound }
 
         guard let streetNumber = placemark.subThoroughfare else {
