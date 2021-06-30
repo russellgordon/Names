@@ -35,8 +35,8 @@ struct RequestLocationServicesAccessView: View {
                 
                 // Button to check out user function defined below
                 Button("Enable Location Services") {
-                    // Get the user's location
-                    locationManager.start()
+                    // Request location services access
+                    locationManager.manager.requestWhenInUseAuthorization()
                 }
                 
                 Spacer()

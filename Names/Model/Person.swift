@@ -11,17 +11,21 @@ import SwiftUI
 struct Person: Identifiable, Comparable, Codable {
     
     enum CodingKeys: CodingKey {
-        case id, name
+        case id, name, latitude, longitude
     }
 
     let id: UUID
     let name: String
     let image: UIImage
+    let latitude: Double
+    let longitude: Double
     
-    init(id: UUID, name: String, image: UIImage) {
+    init(id: UUID, name: String, image: UIImage, latitude: Double, longitude: Double) {
         self.id = id
         self.name = name
         self.image = image
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     // Create an instance of this type by decoding from JSON
@@ -33,7 +37,9 @@ struct Person: Identifiable, Comparable, Codable {
         // Decode each property
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-        
+        latitude = try container.decode(Double.self, forKey: .latitude)
+        longitude = try container.decode(Double.self, forKey: .longitude)
+
         // Get a URL that points to the saved image file for this person
         let filename = getDocumentsDirectory().appendingPathComponent(id.uuidString)
         
@@ -83,7 +89,9 @@ struct Person: Identifiable, Comparable, Codable {
         // Encode the first two properties and then save the image data separately in another file
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
+
         // Save the image data in a separate file in the Documents directory
         if let data = image.jpegData(compressionQuality: 0.8) {
             let filename = getDocumentsDirectory().appendingPathComponent(id.uuidString)
@@ -94,4 +102,7 @@ struct Person: Identifiable, Comparable, Codable {
 
 let testPerson = Person(id: UUID(),
                         name: "Rosario Nguyen",
-                        image: UIImage(systemName: "person.fill.questionmark")!)
+                        image: UIImage(systemName: "person.fill.questionmark")!,
+                        latitude: 37.334900,
+                        longitude: -122.009020)
+ 

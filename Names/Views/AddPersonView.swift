@@ -12,6 +12,9 @@ struct AddPersonView: View {
     // Access our data store
     @EnvironmentObject var store: PersonStore
     
+    // Access to location manager
+    @EnvironmentObject var locationManager: LocationManager
+
     // The image to show
     @State private var image: Image?
     
@@ -26,6 +29,9 @@ struct AddPersonView: View {
     
     // Control whether this view is showing or not
     @Environment(\.presentationMode) var presentationMode
+    
+    // Whether to show an alert
+    @State private var showingLocationNotFoundAlert = false
 
     var body: some View {
         
@@ -91,6 +97,17 @@ struct AddPersonView: View {
                 }
             }
             .navigationTitle("Add Person")
+            .alert(isPresented: $showingLocationNotFoundAlert) {
+                
+                Alert(title: Text("Location not found"),
+                      message: Text("Could not find your location. Please connect to a WiFi or cellular network."),
+                      dismissButton: .default(Text("OK")))
+                
+            }
+            .onAppear() {
+                // Get user's location
+                locationManager.manager.startUpdatingLocation()
+            }
 
         }
 
@@ -189,14 +206,30 @@ struct AddPersonView: View {
     // Add the new person
     func addPerson() {
         
-        // Add a person to the list
-        store.people.append(Person(id: UUID(),
-                                   name: name,
-                                   image: selectedImage!))
-        
-        // Save that person to permanent storage
-        store.saveData()
-        
+        // Get the last known location
+        if let location = locationManager.lastKnownLocation {
+            
+            // Add a person to the list
+            store.people.append(Person(id: UUID(),
+                                       name: name,
+                                       image: selectedImage!,
+                                       latitude: location.latitude,
+                                       longitude: location.longitude))
+            
+            // Save that person to permanent storage
+            store.saveData()
+            
+        } else {
+
+            #if DEBUG
+            print("Location cannot be found.")
+            #endif
+            
+            // Alert showing error message, cannot find user's location
+            showingLocationNotFoundAlert = true
+
+        }
+                
     }
     
 }

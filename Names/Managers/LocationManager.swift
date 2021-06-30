@@ -26,16 +26,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         super.init()
         manager.delegate = self
     }
-    
-    func start() {
         
-        // This request runs asynchronously...
-        manager.requestWhenInUseAuthorization()
-        
-        // Start updating the location of the user...
-        manager.startUpdatingLocation()
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastKnownLocation = locations.first?.coordinate
     }
