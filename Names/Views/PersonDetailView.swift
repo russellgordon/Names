@@ -26,6 +26,7 @@ struct PersonDetailView: View {
                     Text("Met at:")
                         .font(.title3)
                         .bold()
+                        .padding(.top, 6)
                     
                     MapView(region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: person.latitude,
                                                                                       longitude: person.longitude),
@@ -34,6 +35,13 @@ struct PersonDetailView: View {
                             annotations: [person])
                         .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.25)
                     
+                    Text("On:")
+                        .font(.title3)
+                        .bold()
+                        .padding(.top, 6)
+                        .padding(.bottom, 3)
+                    
+                    Text(person.dateMet)
                 }
                 .padding()
             }

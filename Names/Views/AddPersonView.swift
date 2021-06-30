@@ -14,7 +14,7 @@ struct AddPersonView: View {
     
     // Access to location manager
     @EnvironmentObject var locationManager: LocationManager
-
+    
     // The image to show
     @State private var image: Image?
     
@@ -32,7 +32,7 @@ struct AddPersonView: View {
     
     // Whether to show an alert
     @State private var showingLocationNotFoundAlert = false
-
+    
     var body: some View {
         
         NavigationView {
@@ -43,7 +43,7 @@ struct AddPersonView: View {
                     Rectangle()
                         // Don't show the rectangle behind a landscape sized photo
                         .fill(image == nil ? Color(hue: 220.0/360.0, saturation: 0.8, brightness: 0.9) : Color(.clear))
-
+                    
                     // display the image
                     if image != nil {
                         image?
@@ -92,7 +92,7 @@ struct AddPersonView: View {
                     }
                     // Don't allow person to save unless a name and photo are provided
                     .disabled(name.isEmpty || image == nil)
-
+                    
                     
                 }
             }
@@ -108,9 +108,9 @@ struct AddPersonView: View {
                 // Get user's location
                 locationManager.manager.startUpdatingLocation()
             }
-
+            
         }
-
+        
     }
     
     // Get a new random name
@@ -209,27 +209,34 @@ struct AddPersonView: View {
         // Get the last known location
         if let location = locationManager.lastKnownLocation {
             
+            // Get the current date
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            formatter.dateStyle = .full
+            let now = formatter.string(from: Date())
+            
             // Add a person to the list
             store.people.append(Person(id: UUID(),
                                        name: name,
                                        image: selectedImage!,
                                        latitude: location.latitude,
-                                       longitude: location.longitude))
+                                       longitude: location.longitude,
+                                       dateMet: now))
             
             // Save that person to permanent storage
             store.saveData()
             
         } else {
-
+            
             #if DEBUG
             print("Location cannot be found.")
             #endif
             
             // Alert showing error message, cannot find user's location
             showingLocationNotFoundAlert = true
-
+            
         }
-                
+        
     }
     
 }
