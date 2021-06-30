@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81263648268C9EB1002BC0F3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81263647268C9EB1002BC0F3 /* MapView.swift */; };
 		81C92753268B8E1400EF80BA /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92752268B8E1400EF80BA /* AddPersonView.swift */; };
 		81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C92758268B8E6200EF80BA /* ImagePicker.swift */; };
 		81C9275B268B92D500EF80BA /* SharedFunctionsAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9275A268B92D500EF80BA /* SharedFunctionsAndConstants.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		81263647268C9EB1002BC0F3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		81C92752268B8E1400EF80BA /* AddPersonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
 		81C92758268B8E6200EF80BA /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		81C9275A268B92D500EF80BA /* SharedFunctionsAndConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctionsAndConstants.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				81C9275C268B997B00EF80BA /* ListItemView.swift */,
 				81C92760268B9EF300EF80BA /* PersonDetailView.swift */,
 				81C92765268C870C00EF80BA /* RequestLocationServicesAccessView.swift */,
+				81263647268C9EB1002BC0F3 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				81E91075268B55B900266067 /* ContentView.swift in Sources */,
 				81C9275D268B997B00EF80BA /* ListItemView.swift in Sources */,
 				81C92761268B9EF300EF80BA /* PersonDetailView.swift in Sources */,
+				81263648268C9EB1002BC0F3 /* MapView.swift in Sources */,
 				81C9275B268B92D500EF80BA /* SharedFunctionsAndConstants.swift in Sources */,
 				81C92759268B8E6200EF80BA /* ImagePicker.swift in Sources */,
 				81C92768268C889F00EF80BA /* ListView.swift in Sources */,
